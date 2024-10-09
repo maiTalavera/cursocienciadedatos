@@ -1,0 +1,11 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Datos
+data = np.random.randn(1000)
+
+# Crear histograma
+plt.hist(data, bins=30)
+
+# Mostrar gráfico
+plt.show()

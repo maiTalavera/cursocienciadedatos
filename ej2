@@ -1,0 +1,15 @@
+import pandas as pd
+# Leer el archivo Excel
+df_inventario = pd.read_excel('inventario.xlsx', sheet_name='Hoja1')
+
+# Mostrar el contenido del DataFrame
+print(df_inventario)
+# Calcular el total de ventas
+df_ventas['Total'] = df_ventas['Cantidad'] * df_ventas['Precio']
+
+# Filtrar productos con total de ventas > 20
+df_filtrado = df_ventas[df_ventas['Total'] > 20]
+
+# Mostrar el DataFrame filtrado
+print(df_filtrado)
+
