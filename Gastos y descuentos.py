@@ -3,6 +3,7 @@
 #Calcule cuánto gasta un cliente promedio en un dia en el local.
 import requests
 import pandas as pd
+import numpy as np  
 def wget(url):
      r = requests.get(url, allow_redirects=True)
      with open(url[url.rfind('/') + 1::], 'wb') as f:
@@ -12,11 +13,13 @@ datos = pd.read_excel("datosClientes.xlsx")
 print(datos)
 print("\nNombres de las columnas en el archivo:")
 print(datos.columns)
-
-nro_vendidos=datos= datos.groupby('Producto comprado')['Numero comprado'].sum()
+nro_vendidos = datos.groupby('Producto comprado')['Numero comprado'].sum()
 print(nro_vendidos)
-total_gastado = datos['Numero comprado'] * datos['Valor del producto']
-
-# Mostrar el total gastado por cliente
-print("\nTotal gastado por cada cliente:\n")
-print(total_gastado)
+# Calcular y mostrar el total vendido de cada producto
+for i in range(len(datos['Producto comprado'])):
+    total_vendido = datos['Numero comprado'][i] * datos['Valor del producto'][i]
+    print(f"Producto: {datos['Producto comprado'][i]}, Total vendido: {total_vendido}")
+    if total_vendido >50:
+     print('La proxima compra tendrá descuento')
+     gasto_promedio = np.mean(total_vendido)  
+     print('gasto promedio del cliente en un dia', gasto_promedio)
